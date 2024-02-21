@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>crud Causas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Es para el menu -->
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="./crud.css">
+<script>
+$(document).ready(function(){
+	// Activate tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+	
+	// Select/Deselect checkboxes
+	var checkbox = $('table tbody input[type="checkbox"]');
+	$("#selectAll").click(function(){
+		if(this.checked){
+			checkbox.each(function(){
+				this.checked = true;                        
+			});
+		} else{
+			checkbox.each(function(){
+				this.checked = false;                        
+			});
+		} 
+	});
+	checkbox.click(function(){
+		if(!this.checked){
+			$("#selectAll").prop("checked", false);
+		}
+	});
+});
+</script>
+</head>
+<header>
+	<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#"><i class="fa fa-cube"></i>Vázquez<b>·Zarate</b></a>  		
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+				<span class="navbar-toggler-icon"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+		<!-- Collection of nav links, forms, and other content for toggling 
+		<div id="navbarCollapse" class="collapse navbar-collapse">		
+			<form class="navbar-form form-inline">
+				<div class="input-group search-box">								
+					<input type="text" id="search" class="form-control" placeholder="Buscar...">
+					<span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+				</div>
+				-->
+				<br>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a type="button" onclick="location.href='./home.html'"><i class="fa fa-home"></i><span>Home</span></a></li>
+					<li><a href="#"><i class="fa fa-users"></i><span>Clientes</span></a></li>
+					<li><a href="#"><i class="fa fa-folder-open"></i><span>Fiscalias</span></a></li>
+					<li><a type="button" onclick="location.href='./crud-clientes.html'"href="#"><i class="fa fa-address-card"></i><span>Causas</span></a></li>
+					<li><a href="#"><i class="fa fa-hashtag"></i><span>Redes Sociales</span></a></li>
+					<li><a href="#"><i class="fa fa-user-plus"></i><span>Recursos Humanos</span></a></li>
+					<li><a href="#"><i class="fa fa-edit"></i><span>Tareas</span></a></li>
+					<li><a href="#"><i class="fa fa-money"></i><span>Gastos Mensuales</span></a></li>	
+					<li><a href="#"><i class="fa fa-folder"></i><span>Jurisprudencia</span></a></li>
+				
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle user-action"> Usuario <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#"><i class="fa fa-user-o"></i> Perfil</a></li>
+							<li><a href="#"><i class="fa fa-calendar-o"></i> Calendario</a></li>
+							<li><a href="#"><i class="fa fa-sliders"></i> Configuraciones</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><i class="material-icons">&#xE8AC;</i> Cerrar sesión</a></li>
+						</ul>
+					</li>
+				</ul>
+		</div>
+	</nav>
+	</header>
+<body>
+    <div class="container">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<h2><b>Causas</b></h2>
+						</div>
+						<div class="col-xs-6">
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar nueva causa</span></a>
+							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="selectAll">
+									<label for="selectAll"></label>
+								</span>
+							</th>
+							<th>Identificacion</th>
+							<th>Partes involucradas</th>
+							<th>Fechas de los procedimientos legales</th>
+							<th>Documentos presentados</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+								</span>
+							</td>
+							<td>Prueba</td>
+							<td>Prueba</td>
+							<td>Prueba</td>
+							<td>Prueba</td>
+							<td>
+								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr>				
+						<tr>
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox5" name="options[]" value="1">
+									<label for="checkbox5"></label>
+								</span>
+							</td>
+							<td>Prueba</td>
+							<td>Prueba</td>
+							<td>Prueba</td>
+							<td>Prueba</td>
+							<td>
+								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							</td>
+						</tr> 
+					</tbody>
+				</table>
+			</div>
+		</div>        
+    </div>
+	<!-- Edit Modal HTML -->
+	<div id="addEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Agregar causa</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>Identificacion</label>
+							<input type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Partes involucradas</label>
+							<input type="taxt" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Fechas de los procedimientos legales</label>
+							<textarea type="date" class="form-control" required></textarea>
+						</div>
+						<div class="form-group">
+							<label>Documentos presentados</label>
+							<input type="text" class="form-control" required>
+						</div>					
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+						<input type="submit" class="btn btn-success" value="Agragar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Edit Modal HTML -->
+	<div id="editEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Editar causa</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>Identificacion</label>
+							<input type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Partes involucradas</label>
+							<input type="text" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Fechas de los procedimientos legales</label>
+							<textarea type="date" class="form-control" required></textarea>
+						</div>
+						<div class="form-group">
+							<label>Documentos presentados</label>
+							<input type="text" class="form-control" required>
+						</div>					
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+						<input type="submit" class="btn btn-info" value="Guardar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Delete Modal HTML -->
+	<div id="deleteEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Eliminar causa</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<p>Estas seguro de eliminar esta causa?</p>
+						<p class="text-warning"><small>Esta accion no es irreversible.</small></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+						<input type="submit" class="btn btn-danger" value="Eliminar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<footer>
+	<div class="footer-style">
+		<div class="container">
+			<div class="row">
+			  <div class="col-md-12">
+				<h5>Nuestras redes sociales</h5>
+				  	<a class="fa fa-instagram " style="font-size:36px;color:#ebb48d" href="https://www.instagram.com/staff.deabogados/"></a></li>
+					<a class="fa fa-linkedin " style="font-size:36px;color:#ebb48d" href="https://www.linkedin.com/in/estudio-v%C3%A1zquez-z%C3%A1rate-22bb8b1ba/"></a></li>
+					<a class="fa fa-at " style="font-size:36px;color:#ebb48d;" href="mailto:nombredeusuario@gmail.com"></a></li>
+			  </div>
+			</div>
+		</div>
+	</div>
+    
+  </footer>
+</html>
